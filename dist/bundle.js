@@ -93,7 +93,7 @@
 
 
 	// module
-	exports.push([module.id, "html,\nbody {\n  overflow: hidden;\n  width: 100%;\n  height: 100%;\n}\nbody {\n  background-color: #333333;\n}\n.screen {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  width: 640px;\n  height: 480px;\n  margin: auto;\n  background-color: black;\n  text-align: center;\n}\n.screen__wrap {\n  position: relative;\n  height: 398px;\n}\n.info {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 82px;\n  border-top: 2px solid #cccccc;\n  background-color: #999999;\n  text-align: center;\n}\n.face {\n  display: inline-block;\n  width: 60px;\n  height: 80px;\n  border: 2px solid black;\n  background: #1a1a1a url(" + __webpack_require__(4) + ") center no-repeat;\n}\n.question {\n  display: inline-block;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 500px;\n  padding: 20px;\n  background-color: white;\n  transform: translate(-50%, -50%);\n}\n.question__text {\n  margin-bottom: 20px;\n  font-size: 16px;\n  font-weight: bold;\n}\n.answers-list {\n  margin: 0 -10px;\n}\n.answers-list__item {\n  display: inline-block;\n  width: 50%;\n  padding: 5px;\n}\n.answers-list__item.answers-list__item_state_selected .push {\n  border-color: red !important;\n  color: red !important;\n}\n.answers-list__item.answers-list__item_state_selected.answers-list__item_state_correct .push {\n  border-color: green !important;\n  color: green !important;\n}\n.push {\n  outline: 0 !important;\n  border: 2px solid #cccccc;\n  border-radius: 0;\n  background-color: transparent;\n  box-shadow: none !important;\n}\n.push:hover,\n.push:active {\n  border-color: black;\n}\n.push[disabled] {\n  opacity: 1;\n  border-color: #f5f5f5 !important;\n  color: #f5f5f5 !important;\n}\n", ""]);
+	exports.push([module.id, "html,\nbody {\n  overflow: hidden;\n  width: 100%;\n  height: 100%;\n}\nbody {\n  background-color: #333333;\n}\n.screen {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  width: 640px;\n  height: 480px;\n  margin: auto;\n  background-color: black;\n  text-align: center;\n}\n.screen__wrap {\n  position: relative;\n  height: 398px;\n}\n.info {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 82px;\n  border-top: 2px solid #cccccc;\n  background-color: #999999;\n  text-align: center;\n}\n.face {\n  display: inline-block;\n  width: 60px;\n  height: 80px;\n  border: 2px solid black;\n  background: #1a1a1a url(" + __webpack_require__(4) + ") center no-repeat;\n}\n.question {\n  display: inline-block;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 500px;\n  padding: 20px;\n  background-color: white;\n  transform: translate(-50%, -50%);\n}\n.question__text {\n  margin-bottom: 20px;\n  font-size: 16px;\n  font-weight: bold;\n}\n.answers-list {\n  margin: 0 -5px;\n}\n.answers-list__item {\n  display: inline-block;\n  width: 50%;\n  padding: 5px;\n}\n.answers-list__item.answers-list__item_state_correct .push {\n  color: green !important;\n}\n.answers-list__item.answers-list__item_state_correct.answers-list__item_state_selected .push {\n  border-color: green !important;\n  color: green !important;\n}\n.answers-list__item.answers-list__item_state_selected .push {\n  border-color: red !important;\n  color: red !important;\n}\n.push {\n  outline: 0 !important;\n  border: 2px solid #cccccc;\n  border-radius: 0;\n  background-color: transparent;\n  box-shadow: none !important;\n}\n.push:hover,\n.push:active {\n  border-color: black;\n}\n.push[disabled] {\n  opacity: 1;\n  border-color: #f5f5f5 !important;\n  color: #f5f5f5 !important;\n}\n.question__comment {\n  margin-top: 15px;\n}\n", ""]);
 
 	// exports
 
@@ -520,12 +520,14 @@
 				"answers": [
 					"Объект",
 					"Сила",
-					"Примитив"
+					"Примитив",
+					"Мир"
 				],
 				"comments": [
-					"тест",
-					"тест",
-					"тест"
+					"Со всеми вытекающими.",
+					"Сила, брат(или сестра), в правде, хотя функция может ее вернуть.",
+					"Скорее, ваше представление о джаваскрипте.",
+					"В тесте на знание Оурэлла вам бы удалось набрать больше баллов."
 				]
 			}
 		]

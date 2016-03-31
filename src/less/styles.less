@@ -71,7 +71,7 @@ body {
 }
 
 .answers-list {
-    margin: 0 -10px;
+    margin: 0 -5px;
 }
 
 .answers-list__item {
@@ -79,16 +79,20 @@ body {
     width: 50%;
     padding: 5px;
 
-    &.answers-list__item_state_selected {
+    &.answers-list__item_state_correct {
         .push {
-            border-color: red !important;
-            color: red !important;
+            color: green !important;
         }
 
-        &.answers-list__item_state_correct .push {
+        &.answers-list__item_state_selected .push {
             border-color: green !important;
             color: green !important;
         }
+    }
+
+    &.answers-list__item_state_selected .push {
+        border-color: red !important;
+        color: red !important;
     }
 }
 
@@ -108,4 +112,8 @@ body {
         border-color: lighten(black, 96) !important;
         color: lighten(black, 96) !important;
     }
+}
+
+.question__comment {
+    margin-top: 15px;
 }
