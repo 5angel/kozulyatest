@@ -93,7 +93,7 @@
 
 
 	// module
-	exports.push([module.id, "html,\nbody {\n  width: 100%;\n  height: 100%;\n}\nbody {\n  background-color: #333333;\n}\n.screen {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  width: 640px;\n  height: 480px;\n  margin: auto;\n  line-height: 480px;\n  background-color: black;\n}\n.info {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 82px;\n  border-top: 2px solid #cccccc;\n  background-color: #999999;\n  text-align: center;\n}\n.face {\n  display: inline-block;\n  width: 60px;\n  height: 80px;\n  border: 2px solid black;\n  background: #1a1a1a url(" + __webpack_require__(4) + ") center no-repeat;\n}\n.question {\n  display: inline-block;\n  line-height: normal;\n  vertical-align: middle;\n  background-color: white;\n}\n", ""]);
+	exports.push([module.id, "html,\nbody {\n  overflow: hidden;\n  width: 100%;\n  height: 100%;\n}\nbody {\n  background-color: #333333;\n}\n.screen {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  width: 640px;\n  height: 480px;\n  margin: auto;\n  background-color: black;\n  text-align: center;\n}\n.info {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 82px;\n  border-top: 2px solid #cccccc;\n  background-color: #999999;\n  text-align: center;\n}\n.face {\n  display: inline-block;\n  width: 60px;\n  height: 80px;\n  border: 2px solid black;\n  background: #1a1a1a url(" + __webpack_require__(4) + ") center no-repeat;\n}\n.question {\n  display: inline-block;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 500px;\n  background-color: white;\n  transform: translate(-50%, -50%);\n}\n", ""]);
 
 	// exports
 
