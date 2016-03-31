@@ -11,9 +11,29 @@
         <script type="text/javascript" src="dist/bundle.js" charset="utf-8"></script>
         <div class="screen"
              data-ng-controller="GameCtrl as game">
-             <div class="question">
-                 <div class="question__text">Продолжите фразу: «Война – это мир. Свобода – это рабство. Функции – это &hellip;»</div>
-             </div>
+            <div class="screen__wrap">
+                <div class="question"
+                     data-ng-if="game.question !== null">
+                    <div class="question__text" data-ng-bind-html="game.question.text"></div>
+                    <ul class="answers-list list-unstyled">
+                        <li class="answers-list__item"
+                            data-ng-class="{
+                                'answers-list__item_state_correct': game.isCorrect(answer.id),
+                                'answers-list__item_state_selected': game.isSelected(answer.id)
+                            }"
+                            data-ng-repeat="answer in game.question.answers">
+                            <button type="button" class="btn btn-block push"
+                                    data-ng-disabled="game.answered"
+                                    data-ng-click="game.passAnswer(answer.id)"
+                                    data-ng-bind-html="answer.text"></button>
+                        </li>
+                    </ul>
+                    <div class="question__comment"
+                         data-ng-if="game.answered"
+                         data-ng-bind-html="game.comment">
+                    </div>
+                </div>
+            </div>
             <div class="info">
                 <div class="face"></div>
             </div>

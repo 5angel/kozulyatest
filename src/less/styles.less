@@ -29,6 +29,11 @@ body {
     text-align: center;
 }
 
+.screen__wrap {
+    position: relative;
+    height: @screen-height - @info-height;
+}
+
 .info {
     position: absolute;
     bottom: 0;
@@ -57,4 +62,50 @@ body {
     padding: 20px;
     background-color: white;
     transform: translate(-50%, -50%);
+}
+
+.question__text {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.answers-list {
+    margin: 0 -10px;
+}
+
+.answers-list__item {
+    display: inline-block;
+    width: 50%;
+    padding: 5px;
+
+    &.answers-list__item_state_selected {
+        .push {
+            border-color: red !important;
+            color: red !important;
+        }
+
+        &.answers-list__item_state_correct .push {
+            border-color: green !important;
+            color: green !important;
+        }
+    }
+}
+
+.push {
+    outline: 0 !important;
+    border: 2px solid lighten(black, 80);
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none !important;
+
+    &:hover, &:active {
+        border-color: black;
+    }
+
+    &[disabled] {
+        opacity: 1;
+        border-color: lighten(black, 96) !important;
+        color: lighten(black, 96) !important;
+    }
 }

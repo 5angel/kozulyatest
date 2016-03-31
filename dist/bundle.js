@@ -93,7 +93,7 @@
 
 
 	// module
-	exports.push([module.id, "html,\nbody {\n  overflow: hidden;\n  width: 100%;\n  height: 100%;\n}\nbody {\n  background-color: #333333;\n}\n.screen {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  width: 640px;\n  height: 480px;\n  margin: auto;\n  background-color: black;\n  text-align: center;\n}\n.info {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 82px;\n  border-top: 2px solid #cccccc;\n  background-color: #999999;\n  text-align: center;\n}\n.face {\n  display: inline-block;\n  width: 60px;\n  height: 80px;\n  border: 2px solid black;\n  background: #1a1a1a url(" + __webpack_require__(4) + ") center no-repeat;\n}\n.question {\n  display: inline-block;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 500px;\n  padding: 20px;\n  background-color: white;\n  transform: translate(-50%, -50%);\n}\n", ""]);
+	exports.push([module.id, "html,\nbody {\n  overflow: hidden;\n  width: 100%;\n  height: 100%;\n}\nbody {\n  background-color: #333333;\n}\n.screen {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  width: 640px;\n  height: 480px;\n  margin: auto;\n  background-color: black;\n  text-align: center;\n}\n.screen__wrap {\n  position: relative;\n  height: 398px;\n}\n.info {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 82px;\n  border-top: 2px solid #cccccc;\n  background-color: #999999;\n  text-align: center;\n}\n.face {\n  display: inline-block;\n  width: 60px;\n  height: 80px;\n  border: 2px solid black;\n  background: #1a1a1a url(" + __webpack_require__(4) + ") center no-repeat;\n}\n.question {\n  display: inline-block;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 500px;\n  padding: 20px;\n  background-color: white;\n  transform: translate(-50%, -50%);\n}\n.question__text {\n  margin-bottom: 20px;\n  font-size: 16px;\n  font-weight: bold;\n}\n.answers-list {\n  margin: 0 -10px;\n}\n.answers-list__item {\n  display: inline-block;\n  width: 50%;\n  padding: 5px;\n}\n.answers-list__item.answers-list__item_state_selected .push {\n  border-color: red !important;\n  color: red !important;\n}\n.answers-list__item.answers-list__item_state_selected.answers-list__item_state_correct .push {\n  border-color: green !important;\n  color: green !important;\n}\n.push {\n  outline: 0 !important;\n  border: 2px solid #cccccc;\n  border-radius: 0;\n  background-color: transparent;\n  box-shadow: none !important;\n}\n.push:hover,\n.push:active {\n  border-color: black;\n}\n.push[disabled] {\n  opacity: 1;\n  border-color: #f5f5f5 !important;\n  color: #f5f5f5 !important;\n}\n", ""]);
 
 	// exports
 
@@ -413,21 +413,123 @@
 
 /***/ },
 /* 6 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var GameCtrl = function GameCtrl() {
-	    _classCallCheck(this, GameCtrl);
-	};
+	var CONFIG = __webpack_require__(7);
+
+	var GameCtrl = function () {
+	    function GameCtrl($sce) {
+	        _classCallCheck(this, GameCtrl);
+
+	        /* fill partial */
+	        this._serveQuestion = this.__serveQuestionPartial.bind(this, $sce);
+	        this._getComment = this.__getCommentPartial.bind(this, $sce);
+
+	        /* private */
+
+	        this._round = 0;
+	        this._correct = null;
+	        this._memory = [];
+
+	        /* public */
+
+	        this.answered = false;
+	        this.question = null;
+	        this.comment = null;
+
+	        this.next();
+	    }
+
+	    _createClass(GameCtrl, [{
+	        key: 'next',
+	        value: function next() {
+	            if (this.question) {
+	                this._round++;
+	            }
+
+	            this.question = this._serveQuestion(CONFIG.questions[this._round]);
+	        }
+	    }, {
+	        key: 'passAnswer',
+	        value: function passAnswer(id) {
+	            this._memory.push(id);
+	            this.answered = true;
+	            this.comment = this._getComment();
+	        }
+	    }, {
+	        key: 'isSelected',
+	        value: function isSelected(id) {
+	            return this.answered && this._memory[this._round] === id;
+	        }
+	    }, {
+	        key: 'isCorrect',
+	        value: function isCorrect(id) {
+	            return this.answered && this._correct === id;
+	        }
+	    }, {
+	        key: '__getCommentPartial',
+	        value: function __getCommentPartial($sce) {
+	            return $sce.trustAsHtml(CONFIG.questions[this._round].comments[this._memory[this._round]]);
+	        }
+	    }, {
+	        key: '__serveQuestionPartial',
+	        value: function __serveQuestionPartial($sce, question) {
+	            this._correct = question.correct;
+
+	            return {
+	                text: $sce.trustAsHtml(question.text),
+	                answers: question.answers.map(function (a, i) {
+	                    return {
+	                        id: i,
+	                        text: $sce.trustAsHtml(a)
+	                    };
+	                })
+	            };
+	        }
+	    }]);
+
+	    return GameCtrl;
+	}();
 
 	exports.default = GameCtrl;
+
+
+	GameCtrl.round = 0;
+
+	GameCtrl.$inject = ['$sce'];
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"questions": [
+			{
+				"text": "Продолжите фразу: &laquo;Война – это мир. Свобода – это рабство. Функция – это &hellip;&raquo;",
+				"correct": 0,
+				"answers": [
+					"Объект",
+					"Сила",
+					"Примитив"
+				],
+				"comments": [
+					"тест",
+					"тест",
+					"тест"
+				]
+			}
+		]
+	};
 
 /***/ }
 /******/ ]);
